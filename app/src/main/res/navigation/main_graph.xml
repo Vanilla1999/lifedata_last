@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/currentweatherfragment">
+    <fragment
+        android:id="@+id/future"
+        android:name="com.example.myapplication.ether.future.Future"
+        android:label="future_fragment"
+        tools:layout="@layout/future_fragment" />
+    <fragment
+        android:id="@+id/settingsFragmnet"
+        android:name="com.example.myapplication.settings.data.SettingsFragmnet"
+        android:label="settings_fragmnet_fragment"
+        tools:layout="@layout/settings_fragmnet_fragment" />
+    <fragment
+        android:id="@+id/currentweatherfragment"
+        android:name="com.example.myapplication.ether.current.Currentweatherfragment"
+        android:label="current_weather_fragment"
+        tools:layout="@layout/current_weather_fragment" />
+</navigation>
