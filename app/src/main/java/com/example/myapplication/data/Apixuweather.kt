@@ -19,8 +19,8 @@ interface Apixuweather {
         @Query("query") location: String
     ): Call<current_weather>
 /*--методы для получения данных--*/
-//@GET("/posts/{id}")
-//fun getuser(@Path("id") username:Int): Call<GitHubuser>
-//    @GET("/posts/")
-//    fun getuser1(): Call<List<GitHubuser>>
+@GET("/posts/{id}")
+fun getuser(@Path("id") username:Int): Call<GitHubuser>
+    @GET("/posts/")
+    fun getuser1(): Call<List<GitHubuser>>
 }

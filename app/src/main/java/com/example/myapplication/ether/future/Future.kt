@@ -39,26 +39,6 @@ class Future : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(FutureViewModel::class.java)
         // TODO: Use the ViewModel
-        GlobalScope.launch(Dispatchers.IO) {
-            networkService
-                .getJSONApi()
-                .getcurrentweatherAsync("New York")
-                .enqueue(
-                    object : Callback<current_weather> {
-                        override fun onFailure(call: Call<current_weather>, t: Throwable) {
-                            anime1.append("Error occurred while getting request!")
-                            t.stackTrace
-                        }
-                        override fun onResponse(
-                            call: Call<current_weather>,
-                            response: Response<current_weather>
-                        ) {
-                            val post = response.body()
-                            if (post != null) {
-                                anime1.text = "${post.current.cloudcover}" + "\n"
-                            }
-                        }
-                    })
-        }
+
     }
 }
