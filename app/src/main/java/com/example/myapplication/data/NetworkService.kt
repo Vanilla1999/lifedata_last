@@ -1,7 +1,8 @@
 package com.example.myapplication.data
 
-import retrofit2.converter.gson.GsonConverterFactory
+import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class NetworkService private constructor() {
@@ -13,7 +14,6 @@ class NetworkService private constructor() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
     fun getJSONApi(): Apixuweather {
         return mRetrofit.create(Apixuweather::class.java)
     }

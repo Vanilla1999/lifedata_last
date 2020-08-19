@@ -13,7 +13,7 @@ interface  ResDao {
      fun getResult(id:Long): LiveData<Current>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insert(Result: Result)
+     fun insert(current: Current)
 
 }
 

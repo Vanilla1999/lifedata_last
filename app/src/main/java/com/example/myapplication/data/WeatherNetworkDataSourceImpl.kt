@@ -27,7 +27,7 @@ class WeatherNetworkDataSourceImpl(private val apixuweather:Apixuweather) : Weat
                         }
                     }
                 })
-    }
+}
 }
 //.enqueue(
 //object : Callback<current_weather> {
