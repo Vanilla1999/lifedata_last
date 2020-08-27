@@ -2,18 +2,20 @@ package com.example.myapplication.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.myapplication.data.CURRENT_WEATHER_ID
 import com.example.myapplication.data.Current
+import com.example.myapplication.data.current_weather
 
 @Dao
-interface  ResDao {
+abstract class ResDao {
     @Query("SELECT* FROM current_weather")
-     fun getAllResult(): List<Current>
+  abstract   fun getAllResult(): List<Current>
 
-    @Query("SELECT* FROM current_weather where id =:id")
-     fun getResult(id:Long): LiveData<Current>
+    @Query("SELECT* FROM current_weather where id =$CURRENT_WEATHER_ID")
+    abstract   fun getResult(): LiveData<Current>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insert(current: Current)
+    abstract   fun insert(current: Current)
 
 }
 

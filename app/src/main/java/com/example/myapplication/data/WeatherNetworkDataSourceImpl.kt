@@ -6,42 +6,33 @@ import kotlinx.android.synthetic.main.current_weather_fragment.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-class WeatherNetworkDataSourceImpl(private val apixuweather:Apixuweather) : WeatherNetworkDataSource {
-    private val downloadedCurrent= MutableLiveData <current_weather>()
-    override val downloadedCurrentWeather: LiveData<current_weather>
-        get() = downloadedCurrent
-    override suspend fun fetchCurrentWeather() {
-             apixuweather.getcurrentweatherAsync("New York") .enqueue(
-                object : Callback<current_weather> {
-                    override fun onFailure(call: Call<current_weather>, t: Throwable) {
-                        t.stackTrace
-                    }
-                    override fun onResponse(
-                        call: Call<current_weather>,
-                        response: Response<current_weather>
-                    ) {
-                        val post = response.body()
-                        if (post != null) {
-                           downloadedCurrent.postValue(post)
-                        }
-                    }
-                })
+class WeatherNetworkDataSourceImpl() : WeatherNetworkDataSource {
+
+    private lateinit var _apiService: Apixuweather
+    private lateinit var mRetrofit: Retrofit
+    override val apiService: Apixuweather
+        get() = _apiService
+
+    init {
+        fetchCurrentWeather()
+    }
+
+    override fun fetchCurrentWeather() {
+        mRetrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        _apiService = mRetrofit.create(Apixuweather::class.java)
+
+    }
+
+    companion object {
+
+        private val BASE_URL = "http://api.weatherstack.com"
+
+    }
 }
-}
-//.enqueue(
-//object : Callback<current_weather> {
-//    override fun onFailure(call: Call<current_weather>, t: Throwable) {
-//        anime.append("Error occurred while getting request!")
-//        t.stackTrace
-//    }
-//    override fun onResponse(
-//        call: Call<current_weather>,
-//        response: Response<current_weather>
-//    ) {
-//        val post = response.body()
-//        if (post != null) {
-//            anime.text = post.current.cloudcover.toString()
-//        }
-//    }
-//})
+
