@@ -68,7 +68,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
     implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
-
+// google disine
+    implementation group: 'com.squareup.picasso', name: 'picasso', version: '2.5.2'
+    api 'com.google.android.material:material:1.1.0-alpha06'
     // Koin for Kotlin apps
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     implementation "org.koin:koin-androidx-scope:$koin_version"

@@ -16,6 +16,7 @@ import com.example.myapplication.data.NetworkService
 import com.example.myapplication.data.WeatherNetworkDataSourceImpl
 import com.example.myapplication.data.current_weather
 import com.example.myapplication.data.db.Database_weather
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -51,6 +52,13 @@ private lateinit var data :Database_weather
             currentWeather.observe(viewLifecycleOwner, Observer {
                 if (it == null) return@Observer
                 anime.text = it.weatherIcons[0]
+                anime1.text ="New York"
+                Picasso.with(context)
+                    .load(it.weatherIcons[0])
+                    .placeholder(R.drawable.ic_calendar_week)
+                    .error(R.drawable.shr_logo)
+                    .fit()
+                    .into(anime3)
             })
         }
 
